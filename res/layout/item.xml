@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/item_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/no_contact_photo"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            />
+        <TextView 
+            android:id="@+id/item_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@id/item_icon"
+            android:layout_toLeftOf="@id/item_icon"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="北京求职创业家园国际青年公寓"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/item_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_title"
+            android:layout_alignLeft="@id/item_title"
+            android:text=" 北京朝阳区 	"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:id="@+id/item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_title"
+            android:layout_alignRight="@id/item_title"
+            android:layout_toRightOf="@id/item_area"
+            android:layout_alignBottom="@id/item_icon"
+            android:gravity="right|center_vertical"
+            android:text="10-30元"
+            android:textSize="18sp"
+            />
+    </RelativeLayout>
+    <TextView 
+        android:id="@+id/item_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textSize="15sp"
+        android:text="北京求职创业家园国际青年公寓(又名：北京阳光之巢国际青年公寓) ，是北京地区规模最大，也是唯一正规注册的大学生求职公寓。公寓管理正规，服务正规，住宿环境整洁，温馨，安全，装修精致；设施完善齐全，热水洗澡，全自动洗衣机，微波炉，有线.."
+        />
+
+</LinearLayout>

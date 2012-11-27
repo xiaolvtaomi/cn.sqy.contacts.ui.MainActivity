@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff1f1f1" >
+
+    <!-- 顶部工具条 -->
+
+    <RelativeLayout
+        android:id="@+id/tool_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#106184" >
+
+        <ImageButton
+            android:id="@+id/common_title_left"
+            android:layout_width="45dip"
+            android:layout_height="40dip"
+            android:layout_centerVertical="true"
+            android:background="#106184"
+            android:src="@drawable/tool_bar_style" />
+        <ImageView
+            android:id="@+id/common_title_left_divider"
+            android:layout_width="1dip"
+            android:layout_height="40dip"
+            android:layout_toRightOf="@id/common_title_left"
+            android:background="@drawable/top_bar_diviver" />
+
+        <ImageButton
+            android:id="@+id/common_title_right"
+            android:layout_width="45dip"
+            android:layout_height="40dip"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="#106184"
+            android:src="@drawable/tool_bar_style" />
+        <ImageView
+            android:id="@+id/common_title_right_divider"
+            android:layout_width="1dip"
+            android:layout_height="40dip"
+            android:layout_toLeftOf="@id/common_title_right"
+            android:background="@drawable/top_bar_diviver" />
+        
+        <TextView
+            android:id="@+id/common_title_mid"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/common_title_left_divider"
+            android:layout_toLeftOf="@id/common_title_right_divider"            
+            android:background="#106184"
+            android:gravity="center"
+            android:text="信息详情"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <!-- 中间编辑栏 -->
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/tool_bar" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#fff1f1f1"
+            android:paddingBottom="50dip" >
+
+
+            <RelativeLayout
+                android:id="@+id/ll_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+				
+                <TextView 
+                    android:id="@+id/name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="某某酒店欧式的"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:singleLine="true"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    />
+                <TextView
+                    android:id="@+id/area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/name"
+                    android:layout_below="@id/name"
+                    android:text="北京 海淀区"
+                    android:textColor="#000000"
+                    />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@id/name"
+                    android:layout_below="@id/name"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:text="20-30元" />
+
+            </RelativeLayout>
+
+            <Gallery 
+                android:id="@+id/gallery"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/ll_title"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:spacing="5dp"
+                />
+            
+            <!-- 地理位置 -->
+
+            <RelativeLayout
+                android:id="@+id/title_address_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gallery"
+                android:layout_marginTop="10dip" >
+
+                <ImageView
+                    android:id="@+id/iv_address"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/title_call_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_address"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/iv_address"
+                    android:gravity="center_vertical"
+                    android:text="地理位置"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/img_line01"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/iv_address"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/address_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_address_rl"
+                android:layout_marginTop="8dip"
+                android:background="#fff1f1f1"
+                android:divider="@null"
+                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/address_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="未知"
+                    />
+            </LinearLayout>
+
+            <!-- 住宿价格 -->
+
+            <RelativeLayout
+                android:id="@+id/title_price_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/address_ll"
+                android:layout_marginTop="15dip" >
+
+                <ImageView
+                    android:id="@+id/iv_price"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/title_email_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_price"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/iv_price"
+                    android:gravity="center_vertical"
+                    android:text="住宿价格"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:id="@+id/img_line02"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/iv_price"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/price_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_price_rl"
+                android:layout_marginTop="8dip"
+                android:background="#fff1f1f1"
+                android:divider="@null"
+                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/priceinfo_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                     
+                    android:text="未知"
+                    />
+            </LinearLayout>
+
+            <!-- 床位情况 -->
+
+            <RelativeLayout
+                android:id="@+id/title_bedinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price_ll"
+                android:layout_marginTop="15dip" >
+
+                <ImageView
+                    android:id="@+id/iv_bedinfo"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/title_im_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_bedinfo"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/iv_bedinfo"
+                    android:gravity="center_vertical"
+                    android:text="床位情况"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/iv_bedinfo"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/bedinfo_ll"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_bedinfo"
+                android:layout_marginTop="8dip"
+                android:background="#fff1f1f1"
+                android:divider="@null"
+                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/bedinfo_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                     
+                    android:text="未知"
+                    />
+            </LinearLayout>
+
+            <!-- other -->
+
+            <RelativeLayout
+                android:id="@+id/title_infolong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bedinfo_ll"
+                android:layout_marginTop="15dip" >
+
+                <ImageView
+                    android:id="@+id/iv_infolong"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/title_other_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_infolong"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/iv_infolong"
+                    android:gravity="center_vertical"
+                    android:text="旅社简介"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/iv_infolong"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+			<LinearLayout
+			    android:id="@+id/infolong_ll"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:layout_below="@id/title_infolong"
+			    android:layout_marginTop="8dip"
+			    android:background="#fff1f1f1"
+			    android:divider="@null"
+			    android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/infolong_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                     
+                    android:text="未知"
+                    />
+			</LinearLayout>
+            
+			
+			<RelativeLayout
+                android:id="@+id/title_service_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/infolong_ll"
+                android:layout_marginTop="15dip" >
+
+                <ImageView
+                    android:id="@+id/iv_service"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/title_other_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_service"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/iv_service"
+                    android:gravity="center_vertical"
+                    android:text="设施服务"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/iv_service"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+			<LinearLayout
+			    android:id="@+id/service_ll"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:layout_below="@id/title_service_rl"
+			    android:layout_marginTop="8dip"
+			    android:background="#fff1f1f1"
+			    android:divider="@null"
+			    android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/service_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                     
+                    android:text="未知"
+                    />
+			</LinearLayout>
+			
+			<RelativeLayout
+                android:id="@+id/title_contactway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/service_ll"
+                android:layout_marginTop="15dip" >
+
+                <ImageView
+                    android:id="@+id/iv_contactway"
+                    android:layout_width="26dip"
+                    android:layout_height="26dip"
+                    android:layout_marginLeft="20dip"
+                    android:src="@drawable/title_other_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/iv_contactway"
+                    android:layout_marginLeft="15dip"
+                    android:layout_toRightOf="@id/iv_contactway"
+                    android:gravity="center_vertical"
+                    android:text="联系方式"
+                    android:textColor="#398ece"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.5dip"
+                    android:layout_below="@id/iv_contactway"
+                    android:layout_marginLeft="12dip"
+                    android:layout_marginRight="12dip"
+                    android:background="#398ece" />
+            </RelativeLayout>
+			<LinearLayout
+			    android:id="@+id/contactway_ll"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:layout_below="@id/title_contactway"
+			    android:layout_marginTop="8dip"
+			    android:background="#fff1f1f1"
+			    android:divider="@null"
+			    android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/contactway_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                     
+                    android:text="未知"
+                    />
+			</LinearLayout>
+			
+        </RelativeLayout>
+    </ScrollView>
+
+    
+
+</RelativeLayout>
