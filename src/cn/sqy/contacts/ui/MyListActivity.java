@@ -20,19 +20,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import cn.sqy.contacts.R;
 import cn.sqy.contacts.model.HotelBaseBean;
+import cn.sqy.contacts.tool.CommonUtil;
 import cn.sqy.contacts.tool.ContantsUtil;
 
-public class MyListActivity extends Activity implements OnClickListener, OnItemClickListener{
+public class MyListActivity extends Activity implements OnClickListener, OnItemClickListener, OnScrollListener{
 	private Context context ;
 	private String TAG = "QiuzhiListActivity";
 	
@@ -49,6 +53,13 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 	
 	
 	private ArrayList<HotelBaseBean> al;
+	//这个模块总共有多少个hotel
+	public int count = 0;
+	int visibleCount = 0; //当前显示在一个界面中的个数
+	int lastindex = 0;//当前显示的最后一项
+	int totalcount = 0;//存放总共的个数
+	public int curentIndex = 0;
+	public LinearLayout loadMoreView ;
 	
 	private static final int LOADSOURCEDATA = 100;
 	private Handler handler = new Handler(){
@@ -101,18 +112,20 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 		
 		lv = (ListView)findViewById(R.id.qiuzhi_lv);
 		adapter = new MyAdapter(context);
+		loadMoreView = (LinearLayout)getLayoutInflater().inflate(R.layout.loadmore, null);
+		lv.addFooterView(loadMoreView);
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(this);
 		
 		al = new ArrayList<HotelBaseBean>();
-		getData(city,district,hType,infoname);
+		getData(city,district,hType,infoname,curentIndex);
 	}
 	
-	public void getData(final String city, final String  district, final int hType,final String infoname){
+	public void getData(final String city, final String  district, final int hType,final String infoname, final int pageindex){
 		Thread thread = new Thread(){
 			@Override
 			public void run() {
-				//TODO 获取html解析其中的参数
+				// 获取html解析其中的参数
 				try {
 					String newcity = URLEncoder.encode(city, "gbk");
 					String newdistrict = URLEncoder.encode(district, "gbk");
@@ -121,11 +134,14 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 					Log.v(TAG, "http://hotel.yingjiesheng.com/infolist.php?city="+newcity
 							+"&district=" +newdistrict
 							+"&hType="+hType
-							+"&infoname="+newinfoname);
+							+"&infoname="+newinfoname
+							+"&start="+pageindex*10
+							);
 					Document doc = Jsoup.connect("http://hotel.yingjiesheng.com/infolist.php?city="+newcity
 							+"&district=" +newdistrict
 							+"&hType="+hType
 							+"&infoname="+newinfoname
+							+"&start="+pageindex*10
 							).get();
 					Element container = doc.getElementsByClass("cityHotel").first();
 					Log.v(TAG, container.nextElementSibling().text());
@@ -160,9 +176,25 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 						
 						al.add(bean);
 					}
+					// 获取总共有多少个hotel
+					Element ele_count = container.nextElementSibling();
+					String temp = ele_count.text();
+					Log.v(TAG, temp);
+					if(count == 0){
+						if(!temp.isEmpty() && temp.contains("总记录")){
+							String temp_count = temp.substring(4, temp.indexOf("第"));
+							Log.v(TAG, "=======count="+temp_count+"="+temp_count.trim()+"="+temp_count.replace(Jsoup.parse("&nbsp;").text(), "")+"=");
+							count = Integer.parseInt(temp_count.replace(Jsoup.parse("&nbsp;").text(), "").trim());
+						}else{
+							count = al.size();
+						}
+					}
+					
+					curentIndex++;
 					handler.sendEmptyMessage(LOADSOURCEDATA);
 				} catch (IOException e) {
-					//TODO 网络连接出错
+					// 网络连接出错
+					CommonUtil.show_toast(context, "网络连接出错", "orange");
 					e.printStackTrace();
 				}
 			}
@@ -252,4 +284,34 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 			break;
 		}
 	}
+	
+	
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
+		visibleCount = visibleItemCount;
+		lastindex = firstVisibleItem + visibleItemCount ;
+		totalcount = totalItemCount;
+		Log.e("========================= ","========================");
+		Log.e("firstVisibleItem = ",firstVisibleItem+"");
+		Log.e("visibleItemCount = ",visibleItemCount+"");
+		Log.e("totalItemCount = ",totalItemCount+"");
+		Log.e("========================= ","========================");
+		//如果所有的记录选项等于数据集的条数，则移除列表底部视图
+		if(totalItemCount >= count+1){
+			lv.removeFooterView(loadMoreView);
+			CommonUtil.show_toast(context, "数据全部加载完", "blue");
+		}
+		
+	}
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+		if (scrollState == OnScrollListener.SCROLL_STATE_IDLE && totalcount == lastindex) {
+			// 如果是自动加载,可以在这里放置异步加载数据的代码
+			getData(city, district, scrollState, infoname, curentIndex);
+		}
+		
+	}
+
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.List;
 
+import cn.sqy.contacts.R;
 import cn.sqy.contacts.model.Email;
 
 import android.content.Context;
@@ -11,6 +12,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CommonUtil {
@@ -181,5 +186,26 @@ public class CommonUtil {
 		context.startActivity(Intent.createChooser(email, "请选择邮件发送软件"));
 	}
 	
-	
+	public static void show_toast(Context context, String str, String type) {
+		// Toast.makeText(context, str, 1).show();
+		LayoutInflater inflater = LayoutInflater.from(context);
+		View view = inflater.inflate(R.layout.toast_layout, null);
+		if (type.endsWith("blue")) {
+			//1:正常情况下
+			view.setBackgroundResource(R.drawable.app_btn_blue);
+		} else if (type.endsWith("green")) {
+			//2:校验、非空提示
+			view.setBackgroundResource(R.drawable.app_btn_green);
+		} else if (type.endsWith("orange")) {
+			//3:在警告、异常的情况下使用
+			view.setBackgroundResource(R.drawable.app_btn_orange);
+		}
+		TextView textView = (TextView) view.findViewById(R.id.toast_info_msg);
+		textView.setText(str);
+		Toast toast = new Toast(context);
+		toast.setDuration(Toast.LENGTH_LONG);
+		toast.setView(view);
+		toast.setGravity(Gravity.BOTTOM, 0, 0);
+		toast.show();
+	}
 }

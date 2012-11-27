@@ -22,7 +22,7 @@ public class DialActivity extends Activity implements OnClickListener{
 	
 	LinearLayout view_qiuzhi ,view_duanzu, view_zhaodai, view_qingnian, view_jingji;
 	
-	private String city = "北京";
+	private String city = "广州";
 	private String district = "";
 	private String infoname = "";
 	
