@@ -76,7 +76,7 @@
         <service
             android:name=".myview.SendMsgService"
             android:enabled="true" />
-        <activity android:name=".ui.QiuzhiListActivity"></activity>
+        <activity android:name=".ui.MyListActivity"></activity>
         <activity android:name=".ui.HotelDetailActivity"></activity>
     </application>
 

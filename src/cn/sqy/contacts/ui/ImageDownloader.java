@@ -16,6 +16,7 @@
 
 package cn.sqy.contacts.ui;
 
+import java.io.File;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,16 +36,17 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 import cn.sqy.contacts.R;
+import cn.sqy.contacts.tool.ContantsUtil;
+import cn.sqy.contacts.tool.ImageTools;
 
 /**
  * This helper class download images from the Internet and binds those with the provided ImageView.
@@ -170,6 +172,17 @@ public class ImageDownloader {
     Bitmap downloadBitmap(String url) {
         final int IO_BUFFER_SIZE = 4 * 1024;
 
+        //读取本地的图片
+        String[] temp = url.split("/");
+        String picname = temp[temp.length-1];
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
+        		+File.separator+ContantsUtil.LOCALFOLDER;
+        File file = new File(path+File.separator+picname);
+        if(file.exists()){
+        	return BitmapFactory.decodeFile(path+File.separator+picname);
+        }
+        
+        
         // AndroidHttpClient is not allowed to be used from the main thread
         final HttpClient client = (mode == Mode.NO_ASYNC_TASK) ? new DefaultHttpClient() :
             AndroidHttpClient.newInstance("Android");
@@ -191,7 +204,9 @@ public class ImageDownloader {
                     inputStream = entity.getContent();
                     // return BitmapFactory.decodeStream(inputStream);
                     // Bug on slow connections, fixed in future release.
-                    return BitmapFactory.decodeStream(new FlushedInputStream(inputStream));
+                    Bitmap bmp = BitmapFactory.decodeStream(new FlushedInputStream(inputStream));
+                    ImageTools.storeInSD(bmp, path, picname);
+                    return bmp;
                 } finally {
                     if (inputStream != null) {
                         inputStream.close();

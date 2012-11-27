@@ -31,5 +31,10 @@ public class ContantsUtil {
 	public static final String SMS_BODY="body";
 	public static final String SMS_SERVICE_CENTER="service_center";
 	
-	
+	public static final String LOCALFOLDER = "yjsPics";
+	public static final int QIUZHI = 1;
+	public static final int DUANZU = 5;
+	public static final int ZHAODAI = 2;
+	public static final int QINGNIAN = 3;
+	public static final int JINGJI = 4;
 }

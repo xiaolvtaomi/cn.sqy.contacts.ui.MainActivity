@@ -1,5 +1,6 @@
 package cn.sqy.contacts.tool;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.List;
 
@@ -8,10 +9,40 @@ import cn.sqy.contacts.model.Email;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
 public class CommonUtil {
+	
+	/**
+	 * 字符串如果是空或者无效就返回false
+	 * @param temp
+	 * @return
+	 */
+	public static boolean isAvailable(String temp){
+		boolean b = true;
+		if(temp==null || temp.trim().equals("")){
+			b = false;
+		}
+		return b;
+	}
+	
+	/**
+	 * 创建本地SD卡上一个目录
+	 * @param foldername
+	 */
+	public static void createLocalFolder(String foldername){
+		//判断本地有这个路径没
+		String SD_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
+		File file = new File(SD_PATH+File.separator+foldername);
+		//没有创建
+		if(!file.exists()){
+			file.mkdir();
+		}
+	}
+
+	
 	/**
 	 * 日志信息
 	 * 
@@ -150,12 +181,5 @@ public class CommonUtil {
 		context.startActivity(Intent.createChooser(email, "请选择邮件发送软件"));
 	}
 	
-	public static boolean isAvailable(String temp){
-		boolean b = true;
-		if(temp==null || temp.trim().equals("")){
-			b = false;
-		}
-		return b;
-	}
-
+	
 }

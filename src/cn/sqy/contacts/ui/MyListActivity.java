@@ -30,8 +30,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import cn.sqy.contacts.R;
 import cn.sqy.contacts.model.HotelBaseBean;
+import cn.sqy.contacts.tool.ContantsUtil;
 
-public class QiuzhiListActivity extends Activity implements OnClickListener, OnItemClickListener{
+public class MyListActivity extends Activity implements OnClickListener, OnItemClickListener{
 	private Context context ;
 	private String TAG = "QiuzhiListActivity";
 	
@@ -40,6 +41,12 @@ public class QiuzhiListActivity extends Activity implements OnClickListener, OnI
 	private RelativeLayout title_mid ;
 	private ListView lv ;
 	private MyAdapter adapter;
+	
+	private int hType ;
+	private String district;
+	private String city ;
+	private String infoname;
+	
 	
 	private ArrayList<HotelBaseBean> al;
 	
@@ -62,6 +69,10 @@ public class QiuzhiListActivity extends Activity implements OnClickListener, OnI
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_qiuzhilist);
+		hType = getIntent().getIntExtra("hType", ContantsUtil.QIUZHI);
+		city = getIntent().getStringExtra("city");
+		district = getIntent().getStringExtra("district");
+		infoname = getIntent().getStringExtra("infoname");
 		init();
 	}
 	
@@ -76,7 +87,7 @@ public class QiuzhiListActivity extends Activity implements OnClickListener, OnI
 	}
 	
 	public void init(){
-		context = QiuzhiListActivity.this;
+		context = MyListActivity.this;
 		
 		title_left = (ImageButton)findViewById(R.id.title_left);
 		title_right = (ImageButton)findViewById(R.id.title_right);
@@ -94,19 +105,28 @@ public class QiuzhiListActivity extends Activity implements OnClickListener, OnI
 		lv.setOnItemClickListener(this);
 		
 		al = new ArrayList<HotelBaseBean>();
-		getData();
+		getData(city,district,hType,infoname);
 	}
 	
-	public void getData(){
+	public void getData(final String city, final String  district, final int hType,final String infoname){
 		Thread thread = new Thread(){
 			@Override
 			public void run() {
 				//TODO 获取html解析其中的参数
 				try {
-					String city = "北京";
-					city = URLEncoder.encode(city, "gbk");
-					Log.v(TAG, city);
-					Document doc = Jsoup.connect("http://hotel.yingjiesheng.com/infolist.php?city="+city+"&hType=1").get();
+					String newcity = URLEncoder.encode(city, "gbk");
+					String newdistrict = URLEncoder.encode(district, "gbk");
+					String newinfoname = URLEncoder.encode(infoname, "gbk");
+					
+					Log.v(TAG, "http://hotel.yingjiesheng.com/infolist.php?city="+newcity
+							+"&district=" +newdistrict
+							+"&hType="+hType
+							+"&infoname="+newinfoname);
+					Document doc = Jsoup.connect("http://hotel.yingjiesheng.com/infolist.php?city="+newcity
+							+"&district=" +newdistrict
+							+"&hType="+hType
+							+"&infoname="+newinfoname
+							).get();
 					Element container = doc.getElementsByClass("cityHotel").first();
 					Log.v(TAG, container.nextElementSibling().text());
 					Elements eles_hotel = container.getElementsByTag("li");

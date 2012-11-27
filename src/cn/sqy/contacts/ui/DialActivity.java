@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import cn.sqy.contacts.R;
+import cn.sqy.contacts.tool.ContantsUtil;
 
 public class DialActivity extends Activity implements OnClickListener{
 	private Context context;
@@ -20,6 +21,11 @@ public class DialActivity extends Activity implements OnClickListener{
 	TextView title_mid_tv;
 	
 	LinearLayout view_qiuzhi ,view_duanzu, view_zhaodai, view_qingnian, view_jingji;
+	
+	private String city = "北京";
+	private String district = "";
+	private String infoname = "";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,6 +60,7 @@ public class DialActivity extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
+		Intent intent = new Intent(context, MyListActivity.class);
 		switch (v.getId()) {
 		case R.id.title_left:
 			
@@ -65,21 +72,39 @@ public class DialActivity extends Activity implements OnClickListener{
 			//TODO 显示城市选择
 			break;
 		case R.id.home_qiuzhi:
-			//TODO 显示一个界面
-			Intent intent_qiuzhi = new Intent(context, QiuzhiListActivity.class);
-			startActivity(intent_qiuzhi);
+			intent.putExtra("city", city);
+			intent.putExtra("district", district);
+			intent.putExtra("hType", ContantsUtil.QIUZHI);
+			intent.putExtra("infoname", infoname);
+			startActivity(intent);
 			break;
 		case R.id.home_duanzu:
-			
+			intent.putExtra("city", city);
+			intent.putExtra("district", district);
+			intent.putExtra("hType", ContantsUtil.DUANZU);
+			intent.putExtra("infoname", infoname);
+			startActivity(intent);
 			break;
 		case R.id.home_zhaodai:
-			
+			intent.putExtra("city", city);
+			intent.putExtra("district", district);
+			intent.putExtra("hType", ContantsUtil.ZHAODAI);
+			intent.putExtra("infoname", infoname);
+			startActivity(intent);
 			break;
 		case R.id.home_qingnian:
-			
+			intent.putExtra("city", city);
+			intent.putExtra("district", district);
+			intent.putExtra("hType", ContantsUtil.QINGNIAN);
+			intent.putExtra("infoname", infoname);
+			startActivity(intent);
 			break;
 		case R.id.home_jingji:
-			
+			intent.putExtra("city", city);
+			intent.putExtra("district", district);
+			intent.putExtra("hType", ContantsUtil.JINGJI);
+			intent.putExtra("infoname", infoname);
+			startActivity(intent);
 			break;
 
 		default:

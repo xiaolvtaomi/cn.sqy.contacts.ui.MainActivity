@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -20,6 +21,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 /**
  * 处理图片的工具类.
@@ -314,5 +316,36 @@ public class ImageTools {
 		drawable.draw(canvas);
 		return bitmap;
 	}
-
+	
+	/**
+	 * 保存Bitmap到SD卡上制定的路径上，如果已经存在相同名字的图片就取消。即没有覆盖的效果。
+	 * @param bitmap
+	 * @param path
+	 * @param name
+	 */
+	public static synchronized void storeInSD(Bitmap bitmap , String path , String name) {
+		File file = new File(path);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+		File imageFile = new File(path+File.separator+name);
+		try {
+			if(!imageFile.exists()){
+				Log.v("*******", "path="+path+";name="+name);
+				imageFile.createNewFile();
+				FileOutputStream fos = new FileOutputStream(imageFile);
+				if(name.endsWith("png")){
+					bitmap.compress(CompressFormat.JPEG, 50, fos);
+				}else if(name.endsWith("jpg") || name.endsWith("jpeg")){
+					bitmap.compress(CompressFormat.PNG, 50, fos);				
+				}
+				fos.flush();
+				fos.close();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

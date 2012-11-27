@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import cn.sqy.contacts.R;
+import cn.sqy.contacts.tool.CommonUtil;
+import cn.sqy.contacts.tool.ContantsUtil;
 
 public class MainActivity extends ActivityGroup {
 	private GridView bottomMenu;// 应用的底部菜单
@@ -46,6 +48,7 @@ public class MainActivity extends ActivityGroup {
 		bottomMenu.setHorizontalSpacing(10);// 水平间隔
 		bottomMenu.setAdapter(new SimpleAdapter_1(this));// 设置菜单Adapter
 
+		CommonUtil.createLocalFolder(ContantsUtil.LOCALFOLDER);
 		switchActivity(0);// 默认第一次进入联系人界面
 
 		bottomMenu.setOnItemClickListener(new OnItemClickListener() {
