@@ -78,6 +78,9 @@
             android:enabled="true" />
         <activity android:name=".ui.MyListActivity"></activity>
         <activity android:name=".ui.HotelDetailActivity"></activity>
+        <activity android:name=".ui.ChooseCityActivity"></activity>
+        <activity android:name=".ui.ZhaopinDetailActivity"></activity>
+        <activity android:name=".ui.ZhaopinListActivity"></activity>
     </application>
 
 </manifest>

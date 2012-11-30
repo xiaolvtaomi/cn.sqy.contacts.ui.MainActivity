@@ -37,4 +37,7 @@ public class ContantsUtil {
 	public static final int ZHAODAI = 2;
 	public static final int QINGNIAN = 3;
 	public static final int JINGJI = 4;
+	
+	public static final String[] cities = new String[]{"北京","上海","广州","深圳","南京","苏州","杭州","武汉",
+		"天津","济南","重庆","成都","长沙","沈阳","西安","福州","青岛","厦门","宁波","昆明",};
 }

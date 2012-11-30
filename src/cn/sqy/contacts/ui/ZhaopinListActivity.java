@@ -37,9 +37,9 @@ import cn.sqy.contacts.model.HotelBaseBean;
 import cn.sqy.contacts.tool.CommonUtil;
 import cn.sqy.contacts.tool.ContantsUtil;
 
-public class MyListActivity extends Activity implements OnClickListener, OnItemClickListener, OnScrollListener{
+public class ZhaopinListActivity extends Activity implements OnClickListener, OnItemClickListener, OnScrollListener{
 	private Context context ;
-	private String TAG = "QiuzhiListActivity";
+	private String TAG = "ZhaopinListActivity";
 	
 	private ImageButton title_left, title_right, title_mid_iv;
 	private TextView title_mid_tv;
@@ -48,10 +48,7 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 	private ProgressBar progress ;
 	private MyAdapter adapter;
 	
-	private int hType ;
-	private String district;
 	private String city ;
-	private String infoname;
 	
 	
 	private ArrayList<HotelBaseBean> al;
@@ -90,11 +87,8 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_qiuzhilist);
-		hType = getIntent().getIntExtra("hType", ContantsUtil.QIUZHI);
+		setContentView(R.layout.activity_zhaopinlist);
 		city = getIntent().getStringExtra("city");
-		district = getIntent().getStringExtra("district");
-		infoname = getIntent().getStringExtra("infoname");
 		init();
 	}
 	
@@ -109,7 +103,7 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 	}
 	
 	public void init(){
-		context = MyListActivity.this;
+		context = ZhaopinListActivity.this;
 		
 		title_left = (ImageButton)findViewById(R.id.title_left);
 		title_right = (ImageButton)findViewById(R.id.title_right);
@@ -122,7 +116,7 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 		title_mid_tv.setOnClickListener(this);
 		
 		progress = (ProgressBar)findViewById(R.id.progress);
-		lv = (ListView)findViewById(R.id.qiuzhi_lv);
+		lv = (ListView)findViewById(R.id.zhaopin_lv);
 		adapter = new MyAdapter(context);
 		loadMoreView = (LinearLayout)getLayoutInflater().inflate(R.layout.loadmore, null);
 		lv.addFooterView(loadMoreView);
@@ -131,10 +125,10 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 		lv.setOnScrollListener(this);
 		
 		al = new ArrayList<HotelBaseBean>();
-		getData(city,district,hType,infoname,curentIndex);
+		getData(city);
 	}
 	
-	public void getData(final String city, final String  district, final int hType,final String infoname, final int pageindex){
+	public void getData(final String city){
 		Thread thread = new Thread(){
 			@Override
 			public void run() {

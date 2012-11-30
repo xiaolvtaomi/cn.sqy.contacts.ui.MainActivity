@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlCityChoose"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="#fff1f1f1"
+    >
+
+    <include 
+        android:id="@+id/tool_bar"
+        layout="@layout/common_title_txt" />
+
+    <RelativeLayout
+        android:id="@+id/title_currentcity_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar"
+        android:layout_marginTop="10dip" >
+
+        <ImageView
+            android:id="@+id/iv_curentcity"
+            android:layout_width="26dip"
+            android:layout_height="26dip"
+            android:layout_marginLeft="20dip"
+            android:src="@drawable/title_call_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_curentcity"
+            android:layout_marginLeft="15dip"
+            android:layout_toRightOf="@id/iv_curentcity"
+            android:gravity="center_vertical"
+            android:text="当前城市"
+            android:textColor="#398ece"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/img_line01"
+            android:layout_width="fill_parent"
+            android:layout_height="1.5dip"
+            android:layout_below="@id/iv_curentcity"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:background="#398ece" />
+    </RelativeLayout>
+    
+    <TextView 
+        android:id="@+id/tv_currentcity"
+        android:layout_below="@id/title_currentcity_rl"
+        android:layout_toRightOf="@id/iv_curentcity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="未知"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        />
+    <RelativeLayout
+        android:id="@+id/title_hotcity_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_currentcity"
+        android:layout_marginTop="10dip" >
+
+        <ImageView
+            android:id="@+id/iv_hotcity"
+            android:layout_width="26dip"
+            android:layout_height="26dip"
+            android:layout_marginLeft="20dip"
+            android:src="@drawable/title_call_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_hotcity"
+            android:layout_marginLeft="15dip"
+            android:layout_toRightOf="@id/iv_hotcity"
+            android:gravity="center_vertical"
+            android:text="热门城市"
+            android:textColor="#398ece"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/img_line01"
+            android:layout_width="fill_parent"
+            android:layout_height="1.5dip"
+            android:layout_below="@id/iv_hotcity"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="12dip"
+            android:background="#398ece" />
+    </RelativeLayout>
+    
+    <ListView
+        android:id="@+id/lv_city"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/title_hotcity_rl"
+        android:layout_alignParentBottom="true"
+        />
+	
+</RelativeLayout>

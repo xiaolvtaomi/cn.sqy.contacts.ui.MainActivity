@@ -22,7 +22,7 @@ public class DialActivity extends Activity implements OnClickListener{
 	
 	LinearLayout view_qiuzhi ,view_duanzu, view_zhaodai, view_qingnian, view_jingji;
 	
-	private String city = "广州";
+	private String city = "北京";
 	private String district = "";
 	private String infoname = "";
 	
@@ -70,6 +70,8 @@ public class DialActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.title_mid_rl:
 			//TODO 显示城市选择
+			Intent intent_choosecity = new Intent(context, ChooseCityActivity.class);
+			startActivityForResult(intent_choosecity, 100);
 			break;
 		case R.id.home_qiuzhi:
 			intent.putExtra("city", city);
@@ -110,5 +112,11 @@ public class DialActivity extends Activity implements OnClickListener{
 		default:
 			break;
 		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
 	}
 }

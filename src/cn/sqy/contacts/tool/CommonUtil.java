@@ -203,7 +203,7 @@ public class CommonUtil {
 		TextView textView = (TextView) view.findViewById(R.id.toast_info_msg);
 		textView.setText(str);
 		Toast toast = new Toast(context);
-		toast.setDuration(Toast.LENGTH_LONG);
+		toast.setDuration(Toast.LENGTH_SHORT);
 		toast.setView(view);
 		toast.setGravity(Gravity.BOTTOM, 0, 0);
 		toast.show();

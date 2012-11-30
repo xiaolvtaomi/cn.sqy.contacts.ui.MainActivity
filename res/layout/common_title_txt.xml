@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#106184" >
+
+    <ImageButton
+        android:id="@+id/common_title_left"
+        android:layout_width="45dip"
+        android:layout_height="40dip"
+        android:layout_centerVertical="true"
+        android:background="#106184"
+        android:src="@drawable/tool_bar_style" />
+
+    <ImageView
+        android:id="@+id/common_title_left_divider"
+        android:layout_width="1dip"
+        android:layout_height="40dip"
+        android:layout_toRightOf="@id/common_title_left"
+        android:background="@drawable/top_bar_diviver" />
+
+    <ImageButton
+        android:id="@+id/common_title_right"
+        android:layout_width="45dip"
+        android:layout_height="40dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="#106184"
+        android:src="@drawable/tool_bar_style" />
+
+    <ImageView
+        android:id="@+id/common_title_right_divider"
+        android:layout_width="1dip"
+        android:layout_height="40dip"
+        android:layout_toLeftOf="@id/common_title_right"
+        android:background="@drawable/top_bar_diviver" />
+
+    <TextView
+        android:id="@+id/common_title_mid"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/common_title_right_divider"
+        android:layout_toRightOf="@id/common_title_left_divider"
+        android:background="#106184"
+        android:gravity="center"
+        android:text="信息详情"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+</RelativeLayout>

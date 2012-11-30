@@ -30,7 +30,7 @@ import cn.sqy.contacts.model.HotelBaseBean;
 import cn.sqy.contacts.model.HotelDetailBean;
 import cn.sqy.contacts.tool.CommonUtil;
 
-public class HotelDetailActivity extends Activity implements OnClickListener, OnItemClickListener{
+public class ZhaopinDetailActivity extends Activity implements OnClickListener, OnItemClickListener{
 	private Context context;
 	private String TAG = "HotelDetailActivity";
 	private HotelBaseBean hotelbasebean;
@@ -84,7 +84,7 @@ public class HotelDetailActivity extends Activity implements OnClickListener, On
 	}
 
 	public void init(){
-		context = HotelDetailActivity.this;
+		context = ZhaopinDetailActivity.this;
 		
 		title_left = (ImageView)findViewById(R.id.common_title_left);
 		title_right = (ImageView)findViewById(R.id.common_title_right);
