@@ -106,7 +106,7 @@ public class MainActivity extends ActivityGroup {
 			intent = new Intent(this, DialActivity.class);
 			break;
 		case 1:
-			intent = new Intent(this, ContactActivity.class);
+			intent = new Intent(this, ZhaopinListActivity.class);
 			break;
 		case 2:
 			intent = new Intent(this, MessageActivity.class);

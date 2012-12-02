@@ -677,7 +677,9 @@ public final class R {
         public static final int txt_phone=0x7f0800fc;
         public static final int txt_recent_contact=0x7f0800c7;
         public static final int widget_call_layout=0x7f080063;
+        public static final int zhaopin_address=0x7f080106;
         public static final int zhaopin_lv=0x7f080097;
+        public static final int zhaopin_title=0x7f080105;
     }
     public static final class layout {
         public static final int activity_add_contact_to_group=0x7f030000;
@@ -726,6 +728,7 @@ public final class R {
         public static final int vlist_phone=0x7f03002b;
         public static final int vlist_receive_msgs=0x7f03002c;
         public static final int vlist_send_msgs=0x7f03002d;
+        public static final int zhaopinitem=0x7f03002e;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
