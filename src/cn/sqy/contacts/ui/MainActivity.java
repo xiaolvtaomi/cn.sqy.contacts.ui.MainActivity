@@ -29,10 +29,10 @@ public class MainActivity extends ActivityGroup {
 
 	/** gridViewBar图片 **/
 	private int[] gridViewBar_image_array = { R.drawable.bg_tab_dial_normal,
-			R.drawable.bg_tab_contact_normal, R.drawable.bg_tab_sms_normal,
-			R.drawable.bg_tab_setting_normal };
+			R.drawable.bg_tab_contact_normal, R.drawable.bg_tab_setting_normal,
+			R.drawable.bg_tab_sms_normal };
 	/** gridViewBar文字 **/
-	private String[] gridViewBar_name_array = { "首 页", "招 聘", "交 通", "个人中心" };
+	private String[] gridViewBar_name_array = { "首 页", "招 聘", "个人中心", "精品推荐" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class MainActivity extends ActivityGroup {
 			intent = new Intent(this, ZhaopinListActivity.class);
 			break;
 		case 2:
-			intent = new Intent(this, MessageActivity.class);
+			intent = new Intent(this, CenterActivity.class);
 			break;
 		case 3:
 			intent = new Intent(this, CenterActivity.class);

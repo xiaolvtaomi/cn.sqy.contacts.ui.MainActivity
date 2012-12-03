@@ -35,6 +35,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import cn.sqy.contacts.R;
+import cn.sqy.contacts.model.ZhaopinBaseBean;
 import cn.sqy.contacts.tool.CommonUtil;
 import cn.sqy.contacts.tool.ContantsUtil;
 
@@ -52,7 +53,7 @@ public class ZhaopinListActivity extends Activity implements OnClickListener, On
 	private String city ;
 	
 	
-	private ArrayList<ZhaopinBean> al;
+	private ArrayList<ZhaopinBaseBean> al;
 	//这个模块总共有多少个hotel
 	public int count = 0;
 	int visibleCount = 0; //当前显示在一个界面中的个数
@@ -116,6 +117,7 @@ public class ZhaopinListActivity extends Activity implements OnClickListener, On
 		title_right.setOnClickListener(this);
 		title_mid_iv.setOnClickListener(this);
 		title_mid_tv.setOnClickListener(this);
+		title_mid_tv.setText("应届生招聘");
 		
 		progress = (ProgressBar)findViewById(R.id.progress);
 		lv = (ListView)findViewById(R.id.zhaopin_lv);
@@ -125,7 +127,7 @@ public class ZhaopinListActivity extends Activity implements OnClickListener, On
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(this);
 		
-		al = new ArrayList<ZhaopinBean>();
+		al = new ArrayList<ZhaopinBaseBean>();
 		getData(CommonUtil.getPingYin(city));
 	}
 	
@@ -135,21 +137,23 @@ public class ZhaopinListActivity extends Activity implements OnClickListener, On
 			public void run() {
 				// 获取html解析其中的参数
 				try {
-					Log.v(TAG, "http://hotel.yingjiesheng.com/infolist.php?city="+city);
+					Log.v(TAG, "http://zph.yingjiesheng.com/zphlist.php?remark=0&city="+city);
 					handler.sendEmptyMessage(SHOWPROGRESS);
-					Document doc = Jsoup.connect("http://hotel.yingjiesheng.com/infolist.php?city="+city).get();
+					Document doc = Jsoup.connect("http://zph.yingjiesheng.com/zphlist.php?remark=0&city="+city).get();
 					Element container = doc.getElementById("mainNav");
 					Element table = container.getElementsByTag("table").first();
 					if(table != null){
 						Elements eles_trs = table.getElementsByTag("tr");
-						for (int i = 0; i < eles_trs.size(); i++) {
+						for (int i = 1; i < eles_trs.size(); i++) {
 							Element ele_tr = eles_trs.get(i);
 							Elements eles_tds = ele_tr.getElementsByTag("td");
 							if(eles_tds.size() == 3){
-								ZhaopinBean bean = new ZhaopinBean();
-								String url = eles_tds.get(0).absUrl("href");
+								ZhaopinBaseBean bean = new ZhaopinBaseBean();
+								String url = eles_tds.get(0).getElementsByTag("a").first().absUrl("href");
 								String title = eles_tds.get(0).text().toString();
 								String address = eles_tds.get(1).text().toString();
+								Log.v("--------------","-----------");
+								Log.v("-----", "url ="+url);
 								bean.setUrl(url);
 								bean.setTitle(title);
 								bean.setAddress(address);
@@ -171,17 +175,17 @@ public class ZhaopinListActivity extends Activity implements OnClickListener, On
 	
 	
 	class MyAdapter extends BaseAdapter{
-		ArrayList<ZhaopinBean> data ;
+		ArrayList<ZhaopinBaseBean> data ;
 		LayoutInflater li = null;
 		private ImageDownloader imageDownloader ;
 
 		public MyAdapter(Context context){
 			li = LayoutInflater.from(context);
-			data = new ArrayList<ZhaopinBean>();
+			data = new ArrayList<ZhaopinBaseBean>();
 			imageDownloader =  new ImageDownloader(context);
 		}
 		
-		public void setData(ArrayList<ZhaopinBean> data){
+		public void setData(ArrayList<ZhaopinBaseBean> data){
 			this.data = data;
 		}
 		
@@ -229,7 +233,7 @@ public class ZhaopinListActivity extends Activity implements OnClickListener, On
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		Intent intent_detail = new Intent(context, ZhaopinDetailActivity.class);
-		intent_detail.putExtra("zhaopinbean", al.get(position));
+		intent_detail.putExtra("zhaopinbasebean", al.get(position));
 		startActivity(intent_detail);
 	}
 

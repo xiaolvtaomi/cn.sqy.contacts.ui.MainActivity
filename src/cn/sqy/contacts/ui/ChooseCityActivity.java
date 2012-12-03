@@ -45,11 +45,11 @@ public class ChooseCityActivity extends Activity implements OnClickListener, OnI
 		title_right.setOnClickListener(this);
 		title_mid.setText("Ñ¡Ôñ³ÇÊÐ");
 		
-		tv_curentcity = (TextView)findViewById(R.id.tv_currentcity);
+		tv_curentcity = (TextView)findViewById(R.id.city_tv);
 		tv_curentcity.setText(curentcity);
 		lv = (ListView)findViewById(R.id.lv_city);
 		adapter = new MyCityAdapter();
-		
+		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(this);
 	}
 
@@ -85,9 +85,9 @@ public class ChooseCityActivity extends Activity implements OnClickListener, OnI
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder holder = null;
 			if(convertView == null){
-				convertView = LayoutInflater.from(context).inflate(R.layout.choosecity_item, null);
+				convertView = LayoutInflater.from(context).inflate(R.layout.item_city, null);
 				holder = new ViewHolder();
-				holder.tv = (TextView)convertView.findViewById(R.id.choosecity_item_tv);
+				holder.tv = (TextView)convertView.findViewById(R.id.city_tv);
 				convertView.setTag(holder);
 			}else{
 				holder = (ViewHolder) convertView.getTag();

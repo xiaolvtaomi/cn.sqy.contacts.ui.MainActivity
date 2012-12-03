@@ -45,9 +45,15 @@
             android:background="#398ece" />
     </RelativeLayout>
     
+    <include 
+        android:id="@+id/currentcity"
+        layout="@layout/item_city"
+        android:layout_below="@id/title_currentcity_rl"
+        />
+    
     <TextView 
         android:id="@+id/tv_currentcity"
-        android:layout_below="@id/title_currentcity_rl"
+        android:layout_below="@id/currentcity"
         android:layout_toRightOf="@id/iv_curentcity"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

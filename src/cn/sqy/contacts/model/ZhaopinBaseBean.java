@@ -1,8 +1,8 @@
-package cn.sqy.contacts.ui;
+package cn.sqy.contacts.model;
 
 import java.io.Serializable;
 
-public class ZhaopinBean implements Serializable{
+public class ZhaopinBaseBean implements Serializable{
 	private String url = "";
 	private String title = "";
 	private String address = "";

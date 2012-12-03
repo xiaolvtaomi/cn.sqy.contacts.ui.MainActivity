@@ -307,13 +307,11 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 		visibleCount = visibleItemCount;
 		lastindex = firstVisibleItem + visibleItemCount ;
 		totalcount = totalItemCount;
-		Log.e("========================= ","========================");
-//		Log.e("firstVisibleItem = ",firstVisibleItem+"");
-//		Log.e("visibleItemCount = ",visibleItemCount+"");
-		Log.e("lastindex = ",lastindex+"");
-		Log.e("totalcount = ",totalcount+"");
-		Log.e("count = ",count+"");
-		Log.e("========================= ","========================");
+//		Log.e("========================= ","========================");
+//		Log.e("lastindex = ",lastindex+"");
+//		Log.e("totalcount = ",totalcount+"");
+//		Log.e("count = ",count+"");
+//		Log.e("========================= ","========================");
 		
 		
 	}
