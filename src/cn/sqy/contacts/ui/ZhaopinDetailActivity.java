@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import cn.sqy.contacts.R;
+import cn.sqy.contacts.db.ZhaopinDBHelper;
 import cn.sqy.contacts.model.HotelDetailBean;
 import cn.sqy.contacts.model.ZhaopinBaseBean;
 import cn.sqy.contacts.model.ZhaopinDetailBean;
@@ -47,6 +48,10 @@ public class ZhaopinDetailActivity extends Activity implements OnClickListener, 
 	private static final int LOADSOURCEDATA = 100;
 	private static final int NETWRONG = 101;
 	private static final int SHOWPROGRESS = 102;
+	private static final  int UNCHOOSE = 103;
+	private static final  int CHOOSE = 104;
+	
+	private boolean store = false;
 	
 	private Handler handler = new Handler(){
 		public void handleMessage(Message msg) {
@@ -63,6 +68,12 @@ public class ZhaopinDetailActivity extends Activity implements OnClickListener, 
 			case SHOWPROGRESS:
 				progress.setVisibility(View.VISIBLE);
 				break;
+			case UNCHOOSE:
+				title_right.setBackgroundResource(R.drawable.star_unchoose);
+				break;
+			case CHOOSE:
+				title_right.setBackgroundResource(R.drawable.star_choose);
+				break;
 			default:
 				break;
 			}
@@ -74,6 +85,11 @@ public class ZhaopinDetailActivity extends Activity implements OnClickListener, 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zhaopin_detail);
 		zhaopinbasebean = (ZhaopinBaseBean)getIntent().getSerializableExtra("zhaopinbasebean");
+		zhaopindetailbean = new ZhaopinDetailBean();
+		zhaopindetailbean.setTitle(zhaopinbasebean.getTitle());
+		zhaopindetailbean.setAddress(zhaopinbasebean.getAddress());
+		zhaopindetailbean.setUrl(zhaopinbasebean.getUrl());
+		
 		init();
 	}
 
@@ -90,7 +106,20 @@ public class ZhaopinDetailActivity extends Activity implements OnClickListener, 
 		
 		progress = (ProgressBar)findViewById(R.id.progress);
 		
-		getData(zhaopinbasebean);
+		ZhaopinDetailBean temp = ZhaopinDBHelper.getInstance(context).getZhaopin(zhaopinbasebean.getUrl());
+		if(temp == null){
+			store = false;
+			handler.sendEmptyMessage(UNCHOOSE);
+		}else{
+			store = true;
+			handler.sendEmptyMessage(CHOOSE);
+			zhaopindetailbean = temp;
+		}
+		if(store){
+			wv.loadData(zhaopindetailbean.getContent(), "text/html", "UTF-8");
+		}else{
+			getData(zhaopinbasebean);
+		}
 	}
 	
 	public void refreshView(){
@@ -129,6 +158,11 @@ public class ZhaopinDetailActivity extends Activity implements OnClickListener, 
 //					Message msg = new Message();
 //					msg.what = LOADSOURCEDATA;
 //					msg.obj = result;
+					
+					zhaopindetailbean.setContent(sb.toString());
+					
+					
+					
 					handler.sendEmptyMessage(LOADSOURCEDATA);
 				} catch (IOException e) {
 					handler.sendEmptyMessage(NETWRONG);				
@@ -158,7 +192,16 @@ public class ZhaopinDetailActivity extends Activity implements OnClickListener, 
 			finish();
 			break;
 		case R.id.common_title_right:
-			//TODO 收藏或者已收藏
+			// 收藏或者已收藏
+			if(store){
+				// 删除数据库保存
+				ZhaopinDBHelper.getInstance(context).deleteZhaopin(zhaopindetailbean);
+				handler.sendEmptyMessage(UNCHOOSE);
+			}else{
+				//  插入数据库
+				ZhaopinDBHelper.getInstance(context).addZhaopin(zhaopindetailbean);
+				handler.sendEmptyMessage(CHOOSE);
+			}
 			break;
 		default:
 			break;

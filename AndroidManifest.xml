@@ -76,11 +76,21 @@
         <service
             android:name=".myview.SendMsgService"
             android:enabled="true" />
-        <activity android:name=".ui.MyListActivity"></activity>
-        <activity android:name=".ui.HotelDetailActivity"></activity>
-        <activity android:name=".ui.ChooseCityActivity"></activity>
-        <activity android:name=".ui.ZhaopinDetailActivity"></activity>
-        <activity android:name=".ui.ZhaopinListActivity"></activity>
+        <activity android:name=".ui.MyListActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            ></activity>
+        <activity android:name=".ui.HotelDetailActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            ></activity>
+        <activity android:name=".ui.ChooseCityActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            ></activity>
+        <activity android:name=".ui.ZhaopinDetailActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            ></activity>
+        <activity android:name=".ui.ZhaopinListActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" 
+            ></activity>
     </application>
 
 </manifest>

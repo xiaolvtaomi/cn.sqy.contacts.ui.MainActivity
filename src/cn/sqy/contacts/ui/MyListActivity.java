@@ -266,7 +266,7 @@ public class MyListActivity extends Activity implements OnClickListener, OnItemC
 			
 			holder.title.setText(data.get(position).getTitle());
 			holder.area.setText(data.get(position).getArea());
-			holder.price.setText(data.get(position).getPrice());
+			holder.price.setText(data.get(position).getPrice()+"Ԫ");
 			holder.info.setText(data.get(position).getInfo());
 			imageDownloader.download(ConstantBean.ROOT+data.get(position).getIconurl(), holder.icon);
 			

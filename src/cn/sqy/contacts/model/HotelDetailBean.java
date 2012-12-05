@@ -2,8 +2,16 @@ package cn.sqy.contacts.model;
 
 public class HotelDetailBean {
 	
-	private String info_short,price_short,area_short,title;
+	private String info_short,price_short,area_short,title,star;
 	private String url ,address,priceinfo,bedinfo, info_long, service, contactway, smallimages, bigimages;
+	
+	
+	public String getStar() {
+		return star;
+	}
+	public void setStar(String star) {
+		this.star = star;
+	}
 	public String getInfo_short() {
 		return info_short;
 	}

@@ -46,28 +46,18 @@
     </RelativeLayout>
     
     <include 
-        android:id="@+id/currentcity"
         layout="@layout/item_city"
+        android:id="@+id/currentcity"
         android:layout_below="@id/title_currentcity_rl"
+        android:layout_alignParentLeft="true"
         />
     
-    <TextView 
-        android:id="@+id/tv_currentcity"
-        android:layout_below="@id/currentcity"
-        android:layout_toRightOf="@id/iv_curentcity"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="未知"
-        android:textSize="20sp"
-        android:textColor="#000"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        />
+    
     <RelativeLayout
         android:id="@+id/title_hotcity_rl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_currentcity"
+        android:layout_below="@id/currentcity"
         android:layout_marginTop="10dip" >
 
         <ImageView
@@ -104,6 +94,7 @@
         android:layout_height="fill_parent"
         android:layout_below="@id/title_hotcity_rl"
         android:layout_alignParentBottom="true"
+        android:cacheColorHint="#00000000"
         />
 	
 </RelativeLayout>

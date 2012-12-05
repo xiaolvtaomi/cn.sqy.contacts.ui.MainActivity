@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import cn.sqy.contacts.R;
+import cn.sqy.contacts.db.DBHelper;
 import cn.sqy.contacts.tool.CommonUtil;
 import cn.sqy.contacts.tool.ContantsUtil;
 
@@ -39,6 +40,8 @@ public class MainActivity extends ActivityGroup {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		DBHelper.getInstance(MainActivity.this).open();
+		
 		bottomMenu = (GridView) findViewById(R.id.main_gridViewBar);
 		container = (LinearLayout) findViewById(R.id.llContainer);
 
@@ -175,7 +178,7 @@ public class MainActivity extends ActivityGroup {
 
 			item_img.setImageResource(gridViewBar_image_array[position]);
 			item_txt.setText(gridViewBar_name_array[position]);
-			if (position == 1)// 默认启动程序时显示"联系人界面"
+			if (position == 0)// 默认启动程序时显示"联系人界面"
 				view.setVisibility(View.VISIBLE);
 
 			return convertView;

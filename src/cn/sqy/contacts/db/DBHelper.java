@@ -104,7 +104,7 @@ public class DBHelper {
 			db.beginTransaction();
 			try{
 				db.execSQL(HotelsDBHelper.CREATE_HOTEL_BASE_TABLE);
-				
+				db.execSQL(ZhaopinDBHelper.CREATE_ZHAOPIN_TABLE);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -116,6 +116,7 @@ public class DBHelper {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			db.execSQL("drop table if exists "+ HotelsDBHelper.TABLE_HOTELS_DETAIL);
+			db.execSQL("drop table if exists "+ ZhaopinDBHelper.TABLE_ZHAOPIN_STAR);
 			onCreate(db);
 		}
 	}

@@ -26,6 +26,7 @@ public class HotelsDBHelper {
 	public static final String HOTEL_CONTACTWAY = "hotel_contactway";
 	public static final String HOTEL_SMALLIMAGES = "hotel_smallimages";
 	public static final String HOTEL_BIGIMAGES = "hotel_bigimages";
+	public static final String HOTEL_STAR = "hotel_star"; // 1 Ï²»¶£¬0,
 	
 	
 	public static final String CREATE_HOTEL_BASE_TABLE ="create table "+
@@ -41,6 +42,7 @@ public class HotelsDBHelper {
 			HOTEL_INFO + " text ,"+
 			HOTEL_SERVICE + " text ,"+
 			HOTEL_CONTACTWAY + " text ,"+
+			HOTEL_STAR + " text ,"+
 			HOTEL_SMALLIMAGES + " text ,"+
 			HOTEL_BIGIMAGES + " text "+
 			")";
@@ -75,6 +77,7 @@ public class HotelsDBHelper {
 		values.put(HOTEL_INFO, bean.getInfo_long());
 		values.put(HOTEL_SERVICE, bean.getService());
 		values.put(HOTEL_CONTACTWAY, bean.getContactway());
+		values.put(HOTEL_STAR, bean.getStar());
 		values.put(HOTEL_SMALLIMAGES, bean.getSmallimages());
 		values.put(HOTEL_BIGIMAGES, bean.getBigimages());
 		
@@ -101,6 +104,7 @@ public class HotelsDBHelper {
 		values.put(HOTEL_INFO, bean.getInfo_long());
 		values.put(HOTEL_SERVICE, bean.getService());
 		values.put(HOTEL_CONTACTWAY, bean.getContactway());
+		values.put(HOTEL_STAR, bean.getStar());
 		values.put(HOTEL_SMALLIMAGES, bean.getSmallimages());
 		values.put(HOTEL_BIGIMAGES, bean.getBigimages());
 		
@@ -127,6 +131,7 @@ public class HotelsDBHelper {
 			result.setSmallimages(cursor.getString(cursor.getColumnIndex(HOTEL_SMALLIMAGES)));
 			result.setTitle(cursor.getString(cursor.getColumnIndex(HOTEL_TITLE)));
 			result.setUrl(cursor.getString(cursor.getColumnIndex(HOTEL_URL)));
+			result.setStar(cursor.getString(cursor.getColumnIndex(HOTEL_STAR)));
 		}
 		dbHelper.free();
 		return result;

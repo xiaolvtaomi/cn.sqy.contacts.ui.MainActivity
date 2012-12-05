@@ -13,7 +13,7 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:background="@drawable/btn_new_contact" />
+        android:background="@drawable/tool_bar_style" />
 
     <ImageView
         android:id="@+id/title_left_divider"
